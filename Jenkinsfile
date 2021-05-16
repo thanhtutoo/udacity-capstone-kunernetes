@@ -23,7 +23,7 @@ pipeline {
         withCredentials(bindings: [usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {
           sh '''
 						docker login -u $USERNAME -p $PASSWORD
-						docker push thanhtutoo/capstone
+						docker push thanhtutooai/capstone
 					'''
         }
 
