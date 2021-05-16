@@ -4,7 +4,7 @@ pipeline {
 
 		stage('Lint HTML') {
 			steps {
-				sh 'tidy -q -e Deploy-Cluster/index.html'
+				sh 'tidy -q -e index.html'
 			}
 		}
 		
@@ -12,7 +12,7 @@ pipeline {
 			steps {		
                 withCredentials([usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {	
 					sh '''
-						docker build -t aravindb15/capstone Deploy-Cluster/.
+						docker build -t thanhtutoo/capstone .
 					'''
                 }
             }
