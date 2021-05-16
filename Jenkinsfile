@@ -7,7 +7,7 @@ pipeline {
       }
     }
 
-    stage('Build Docker Image') {
+    stage('Build Docker Image ') {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {
           sh '''
