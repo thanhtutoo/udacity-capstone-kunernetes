@@ -11,7 +11,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {
           sh '''
-						docker build -t thanhtutoo/capstone .
+						docker build -t thanhtutooai/capstone .
 					'''
         }
 
