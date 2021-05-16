@@ -4,8 +4,10 @@ pipeline {
     stage('Lint HTML') {
       steps {
         sh 'tidy -q -e index.html'
+        sh 'def dockerHome = tool \'mydocker\''
       }
     }
+
     stage('Build Docker Image ') {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {
