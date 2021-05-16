@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('create cluster') {
+    stage('lint') {
       steps {
         echo 'Testing'
+        sh 'tidy -q -e index.html'
       }
     }
 
