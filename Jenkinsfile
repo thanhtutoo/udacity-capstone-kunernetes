@@ -1,33 +1,34 @@
 pipeline {
-	agent any
-	stages {
+  agent any
+  stages {
+    stage('Lint HTML') {
+      steps {
+        sh 'tidy -q -e index.html'
+      }
+    }
 
-		stage('Lint HTML') {
-			steps {
-				sh 'tidy -q -e index.html'
-			}
-		}
-		
-		stage('Build Docker Image') {
-			steps {		
-                withCredentials([usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {	
-					sh '''
+    stage('Build Docker Image') {
+      steps {
+        withCredentials(bindings: [usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {
+          sh '''
 						docker build -t thanhtutoo/capstone .
 					'''
-                }
-            }
-		}
+        }
 
-		stage('Push Image To Dockerhub') {
-			steps {		
-                withCredentials([usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {		
-					sh '''
+      }
+    }
+
+    stage('Push Image To Dockerhub') {
+      steps {
+        withCredentials(bindings: [usernamePassword(credentialsId:'dockerid',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')]) {
+          sh '''
 						docker login -u $USERNAME -p $PASSWORD
 						docker push thanhtutoo/capstone
-					'''				
-                }
-            }
-		}
+					'''
+        }
 
-	}
+      }
+    }
+
+  }
 }
