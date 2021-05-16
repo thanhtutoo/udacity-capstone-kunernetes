@@ -4,8 +4,6 @@ pipeline {
     stage('Lint HTML') {
       steps {
         sh 'tidy -q -e index.html'
-        sh 'def dockerHome = tool \'mydocker\''
-        sh 'env.PATH = "${dockerHome}/bin:${env.PATH}"'
       }
     }
 
