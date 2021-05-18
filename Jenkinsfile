@@ -39,5 +39,63 @@ pipeline {
 				}
 			}
 		}
+    stage('Set current kubectl context') {
+			steps {
+				withAWS(region:'us-east-1', credentials:'awsid') {
+					sh '''
+						kubectl config use-context arn:aws:eks:us-east-1:243857932979:cluster/udacitycluster
+					'''
+				}
+			}
+		}
+
+		stage('Deploy blue container') {
+			steps {
+					withAWS(region:'us-east-1', credentials:'awsid') {
+					sh '''
+						kubectl apply -f blue_deploy/blue-controller.json
+					'''
+				}
+			}
+		}
+
+		stage('Deploy green container') {
+			steps {
+								withAWS(region:'us-east-1', credentials:'awsid') {
+
+					sh '''
+						kubectl apply -f green_deploy/green-controller.json
+					'''
+				}
+			}
+		}
+
+		stage('Create the service in the cluster, redirect to blue') {
+			steps {
+								withAWS(region:'us-east-1', credentials:'awsid') {
+
+					sh '''
+						kubectl apply -f blue_deploy/blue-service.json
+					'''
+				}
+			}
+		}
+
+		stage('Wait user approve') {
+            steps {
+                input "Ready to redirect traffic to green?"
+            }
+        }
+
+		stage('Create the service in the cluster, redirect to green') {
+			steps {
+								withAWS(region:'us-east-1', credentials:'awsid') {
+
+					sh '''
+						kubectl apply -f green_deploy/green-service.json
+					'''
+				}
+			}
+		}
   }
 }
