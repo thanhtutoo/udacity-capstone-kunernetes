@@ -30,11 +30,11 @@ pipeline {
       }
     }
 
-		stage('Set current kubectl context') {
+		stage('test aws') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'Jenkins') {
+				withAWS(region:'us-east-1', credentials:'awsid') {
 					sh '''
-						kubectl config use-context arn:aws:eks:us-east-1:243857932979:cluster/udacitycluster
+						aws s3 ls
 					'''
 				}
 			}
