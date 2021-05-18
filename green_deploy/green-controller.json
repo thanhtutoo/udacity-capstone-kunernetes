@@ -22,7 +22,7 @@
                 "containers": [
                     {
                         "name": "green",
-                        "image": "thanhtutoo/capstone",
+                        "image": "thanhtutooai/capstone",
                         "ports": [
                             {
                                 "name": "http-server",
