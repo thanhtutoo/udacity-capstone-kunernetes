@@ -39,6 +39,15 @@ pipeline {
 				}
 			}
 		}
+    stage('update config kubectl context') {
+			steps {
+				withAWS(region:'us-east-1', credentials:'awsid') {
+					sh '''
+						aws eks --region us-east-1 update-kubeconfig --name udacitycluster
+					'''
+				}
+			}
+		} 
     stage('Set current kubectl context') {
 			steps {
 				withAWS(region:'us-east-1', credentials:'awsid') {
