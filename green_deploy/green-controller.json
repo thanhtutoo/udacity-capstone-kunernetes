@@ -19,10 +19,12 @@
                 }
             },
             "spec": {
+                "terminationGracePeriodSeconds": 30,
                 "containers": [
                     {
                         "name": "green",
-                        "image": "thanhtutooai/capstone",
+                        "image": "thanhtutooai/capstone:latest",
+                        "imagePullPolicy": "Always",
                         "ports": [
                             {
                                 "name": "http-server",

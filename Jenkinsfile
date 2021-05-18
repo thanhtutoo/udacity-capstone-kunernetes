@@ -29,17 +29,7 @@ pipeline {
 
       }
     }
-
-		stage('test aws') {
-			steps {
-				withAWS(region:'us-east-1', credentials:'awsid') {
-					sh '''
-						aws s3 ls
-					'''
-				}
-			}
-		}
-    stage('update config kubectl context') {
+    stage('update config kubectl') {
 			steps {
 				withAWS(region:'us-east-1', credentials:'awsid') {
 					sh '''
