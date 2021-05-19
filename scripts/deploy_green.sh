@@ -10,3 +10,7 @@ kubectl apply -f green_deploy/green-controller.json
 # Step 3: 
 # apply service
 kubectl apply -f green_deploy/green-service.json
+
+kubectl get svc
+kubectl get pods
+kubectl get nodes

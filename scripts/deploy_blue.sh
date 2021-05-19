@@ -11,3 +11,7 @@ kubectl apply -f blue_deploy/blue-controller.json
 # Step 3: 
 # apply service
 kubectl apply -f blue_deploy/blue-service.json
+
+kubectl get svc
+kubectl get pods
+kubectl get nodes
