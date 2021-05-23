@@ -28,12 +28,13 @@
 1. use cloudformation/eks-vpc.yaml to create eks vpc from aws console
 2. ./scripts/create-eks.sh
 3. use cloudformation/eks-nodegroup.yaml to create nodegroup worker from aws console
-4. kubectl apply -f cloudformation/aws-auth-cm.yaml
-5. kubectl get nodes
-6. ./scripts/build_docker_img.sh
-7. ./scripts/upload_docker.sh
-8. ./scripts/deploy_blue.sh
-9. ./scripts/deploy_green.sh
+4. aws eks --region us-east-1 update-kubeconfig --name demo4
+5. kubectl apply -f cloudformation/aws-auth-cm.yaml
+6. kubectl get nodes
+7. ./scripts/build_docker_img.sh
+8. ./scripts/upload_docker.sh
+9. ./scripts/deploy_blue.sh
+10. ./scripts/deploy_green.sh
 
 # reference
 https://logz.io/blog/amazon-eks-cluster/
